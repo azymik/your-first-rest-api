@@ -43,7 +43,7 @@ RUN git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 RUN sh ~/.vim_runtime/install_awesome_vimrc.sh
 RUN echo "set mouse=a\nset number" >> ~/.vim_runtime/my_configs.vim
 RUN python3.12 -m venv .venv
-RUN . ~/.venv/bin/activate && pip install flask=3.0.3 && deactivate
+RUN . ~/.venv/bin/activate && pip install flask==3.0.3 && deactivate
 
 EXPOSE 5000
 WORKDIR /app
