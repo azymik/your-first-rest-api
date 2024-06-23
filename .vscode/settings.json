@@ -1,0 +1,15 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.wordWrap": "on",
+  "editor.accessibilitySupport": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.linkedEditing": true,
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "Monokai Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "window.zoomLevel": 1,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "playwright.reuseBrowser": true
+}
