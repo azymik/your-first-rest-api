@@ -11,5 +11,8 @@
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "git.autofetch": true,
   "git.confirmSync": false,
-  "playwright.reuseBrowser": true
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": true
+  }
 }
