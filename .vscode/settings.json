@@ -2,7 +2,7 @@
   "files.autoSave": "onFocusChange",
   "editor.wordWrap": "on",
   "editor.accessibilitySupport": "off",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "ms-python.autopep8",
   "editor.linkedEditing": true,
   "editor.formatOnSave": true,
   "workbench.colorTheme": "Monokai Pro",
@@ -14,5 +14,8 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.formatOnSave": true
+  },
+  "files.associations": {
+    "*.py": "python"
   }
 }

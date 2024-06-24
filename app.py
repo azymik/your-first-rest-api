@@ -15,12 +15,12 @@ stores = [
 ]
 
 
-@app.get('/store')  # http://localhost:65000/store
+@app.get('/store')  # http GET :5000/store
 def get_stores():
     return {'stores': stores}
 
 
-@app.post('/store')  # http://localhost:6500/store name='my store'
+@app.post('/store')  # http POST :5000/store name=[STORE NAME]'
 def create_store():
     request_data = request.get_json()
     new_store = {
@@ -31,7 +31,7 @@ def create_store():
     return new_store, 201
 
 
-# http http://localhost:5000/store/My\ Store/item name='Table' price:=17.99
+# http POST :5000/store/[STORE NAME]/item name=[ITEM NAME] price:=[ITEM PRICE]
 @app.post('/store/<string:name>/item')
 def create_item(name):
     request_data = request.get_json()
@@ -43,4 +43,22 @@ def create_item(name):
             }
             store['items'].append(new_item)
             return new_item, 201
+    return {'message': 'Store not found'}, 404
+
+
+@app.get('/store/<string:name>')  # http GET :5000/store/[STORE NAME]
+def get_store(name):
+    for store in stores:
+        if store['name'] == name:
+            return store
+
+    return {'message': 'Store not found'}, 404
+
+
+@app.get('/store/<string:name>/item')  # http GET :5000/store/[STORE NAME]/item
+def get_item_in_store(name):
+    for store in stores:
+        if store['name'] == name:
+            return {'item': store['items']}
+
     return {'message': 'Store not found'}, 404
