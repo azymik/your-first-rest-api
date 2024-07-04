@@ -12,14 +12,14 @@ resources: API Directory
 - item.py
 - store.py
 
-.devpass.env: Password for docker 'devuser' account
-.flask.env: Environment for Flask
-.gitignore
-app.py: Starting Point for Flask
-db.py: Setting Up Database
-Dockerfile
-readme.md
-requirements.txt: Python required packages list
-run_flask.sh: Shell Script to run Flask
-schemas.py: Schema for API
+.devpass.env: Password for docker 'devuser' account\n
+.flask.env: Environment for Flask\n
+.gitignore\n
+app.py: Starting Point for Flask\n
+db.py: Setting Up Database\n
+Dockerfile\n
+readme.md\n
+requirements.txt: Python required packages list\n
+run_flask.sh: Shell Script to run Flask\n
+schemas.py: Schema for API\n
 start_container.sh: Shell Script to Create Image, Run Container for Flask
