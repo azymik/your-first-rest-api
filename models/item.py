@@ -14,3 +14,8 @@ class ItemModel(db.Model):
         nullable=False,
     )
     store = db.relationship('StoreModel', back_populates='items')
+    tags = db.relationship(
+        'TagModel',
+        back_populates='items',
+        secordary='items_tags'
+    )
