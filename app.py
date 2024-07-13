@@ -2,12 +2,17 @@ import os
 
 from flask import Flask
 from flask_smorest import Api
+from flask_jwt_extended import JWTManager
 
 from db import db
 
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
+
+# Use this to gen Secret Key
+# import secrets
+# secrets.SystemRandom().getrandbits(128)
 
 
 def create_app(db_url=None):
@@ -25,9 +30,13 @@ def create_app(db_url=None):
         'sqlite:///data.db',
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['JWT_SECRET_KEY'] = '26057403899405478362282812029921118651'
+
     db.init_app(app)
 
     api = Api(app)
+
+    jwt = JWTManager(app)
 
     with app.app_context():
         db.create_all()

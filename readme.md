@@ -34,3 +34,8 @@ run_flask.sh: Shell Script to run Flask\
 schemas.py: Schema for API\
 \
 start_container.sh: Shell Script to Create Image, Run Container for Flask
+
+
+http POST :5000/register username=jose password=1234
+http GET :5000/user/[id]
+http DELETE :5000/user/[id]
