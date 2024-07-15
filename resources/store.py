@@ -11,7 +11,7 @@ from schemas import StoreSchema
 blp = Blueprint('stores', __name__, description='Operations on stores')
 
 
-@blp.route('/store/<string:store_id>')
+@blp.route('/store/<int:store_id>')
 class Store(MethodView):
     # FIXME: http GET :5000/store/[STORE_ID]
     @blp.response(200, StoreSchema)
