@@ -13,14 +13,14 @@ blp = Blueprint('Items', __name__, description='Operations on items')
 
 @blp.route('/item/<int:item_id>')
 class Item(MethodView):
-    # FIXME: http GET :5000/item/[item_id] 'Authorization:Bearer [jwt]'
+    # FIXME: http GET :5000/item/[item_id] 'Authorization:Bearer [access_token]'
     @jwt_required()
     @blp.response(200, ItemSchema)
     def get(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         return item
 
-    # FIXME: http DELETE :5000/item/[item_id] 'Authorization:Bearer [jwt]'
+    # FIXME: http DELETE :5000/item/[item_id] 'Authorization:Bearer [access_token]'
     @jwt_required()
     def delete(self, item_id):
         jwt = get_jwt()
@@ -50,14 +50,14 @@ class Item(MethodView):
 
 @blp.route('/item')
 class ItemList(MethodView):
-    # FIXME: http GET :5000/ 'Authorization:Bearer [jwt]'
+    # FIXME: http GET :5000/ 'Authorization:Bearer [access_token]'
     @jwt_required()
     @blp.response(200, ItemSchema(many=True))
     def get(self):
         return ItemModel.query.all()
 
-    # FIXME: http POST :5000/item name='Chair' price:=17.99 store_id:=[STORE_ID] 'Authorization:Bearer [jwt]'
-    @jwt_required()
+    # FIXME: http POST :5000/item name='Chair' price:=17.99 store_id:=[STORE_ID] 'Authorization:Bearer [access_token]'
+    @jwt_required(fresh=True)
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)
     def post(self, item_data):

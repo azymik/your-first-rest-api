@@ -4,6 +4,9 @@
 instance: DB Directory
 - data.db: DB File
 
+migrations: DB Migrations Info Directory
+- many files
+
 models: Model Directory
 - item.py
 - store.py
@@ -21,9 +24,13 @@ resources: API Directory
 \
 app.py: Starting Point for Flask\
 \
+blocklist.py: Contains blocklist of JWT tokens which added after user logged out\
+\
 db.py: Setting Up Database\
 \
 Dockerfile\
+\
+initialize_db.sh: Initialize database\
 \
 readme.md\
 \
