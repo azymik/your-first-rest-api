@@ -31,6 +31,9 @@ docker buildx build $(cat .devpass.env | sed 's@^@--build-arg @g' | paste -s -d 
 
 ### Start Container
 Use `flask run` for DEV, `gunicorn` for PROD
+```
+docker compose up -d
+```
 
 ## Initializing/Migrating/Upgrading Database
 Migrate then Upgrade everytime that models change
@@ -78,9 +81,9 @@ http DELETE :[port]/tag/[tag_id]
 
 ### user.py
 ```
-http POST :[port]/register username:[username] password=[password]
+http POST :[port]/register username=[username] password=[password]
 
-http POST :[port]/login username:[username] password=[password]
+http POST :[port]/login username=[username] password=[password]
 
 http POST :[port]/refresh 'Authorization:Bearer [refresh_token]'
 
