@@ -39,6 +39,7 @@ flask db upgrade
 ## Start App
 DEV
 > flask run --host=0.0.0.0
+
 PROD
 > gunicorn --bind 0.0.0.0:80 'app:create_app()'
 
