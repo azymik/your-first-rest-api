@@ -12,14 +12,12 @@ blp = Blueprint('Tags', __name__, description='Operations on tags')
 
 @blp.route('/store/<int:store_id>/tag')
 class TagsInStore(MethodView):
-    # FIXME: http GET :5000/store/[store_id]/tag
     @blp.response(200, TagSchema(many=True))
     def get(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
 
         return store.tags.all()
 
-    # FIXME: http POST :5000/store/[store_id]/tag name='Tag name'
     @blp.arguments(TagSchema)
     @blp.response(201, TagSchema)
     def post(self, tag_data, store_id):
@@ -39,7 +37,6 @@ class TagsInStore(MethodView):
 
 @blp.route('/item/<int:item_id>/tag/<int:tag_id>')
 class LinkTagsToItem(MethodView):
-    # FIXME: http POST :5000/item/[item_id]/tag/[tag_id]
     @blp.response(201, TagSchema)
     def post(self, item_id, tag_id):
         item = ItemModel.query.get_or_404(item_id)
@@ -54,8 +51,6 @@ class LinkTagsToItem(MethodView):
             abort(500, message='An error occurred while inserting the tag.')
 
         return tag
-
-    # FIXME: http DELETE :5000/item/[item_id]/tag/[tag_id]
 
     @blp.response(201, TagSchema)
     def delete(self, item_id, tag_id):
@@ -79,14 +74,11 @@ class LinkTagsToItem(MethodView):
 
 @blp.route('/tag/<int:tag_id>')
 class Tag(MethodView):
-    # FIXME: http GET :5000/tag/[tag_id]
     @blp.response(200, TagSchema)
     def get(self, tag_id):
         tag = TagModel.query.get_or_404(tag_id)
 
         return tag
-
-    # FIXME: http DELETE :5000/tag/[tag_id]
 
     @blp.response(
         202,

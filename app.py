@@ -13,10 +13,6 @@ from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
 
-# Use this to gen Secret Key
-# import secrets
-# secrets.SystemRandom().getrandbits(128)
-
 
 def create_app(db_url=None):
     app = Flask(__name__)
@@ -33,6 +29,9 @@ def create_app(db_url=None):
         'sqlite:///data.db',
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # Use this to gen Secret Key
+    # import secrets
+    # secrets.SystemRandom().getrandbits(128)
     app.config['JWT_SECRET_KEY'] = '26057403899405478362282812029921118651'
 
     db.init_app(app)

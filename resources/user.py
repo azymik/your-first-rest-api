@@ -13,7 +13,6 @@ blp = Blueprint('Users', __name__, description='Operations on users')
 
 @blp.route('/register')
 class UserRegister(MethodView):
-    # FIXME: http POST :5000/register username=devname password=1234
     @blp.arguments(UserSchema)
     def post(self, user_data):
         if UserModel.query.filter(UserModel.username == user_data['username']).first():
@@ -31,7 +30,6 @@ class UserRegister(MethodView):
 
 @blp.route('/login')
 class UserLogin(MethodView):
-    # FIXME: http POST :5000/login username=devname password=1234
     @blp.arguments(UserSchema)
     def post(self, user_data):
         user = UserModel.query.filter(
@@ -48,7 +46,6 @@ class UserLogin(MethodView):
 
 @blp.route('/refresh')
 class TokenRefresh(MethodView):
-    # FIXME: http POST :5000/refresh 'Authorization:Bearer [refresh_token]'
     @jwt_required(refresh=True)
     def post(self):
         current_user = get_jwt_identity()
@@ -60,7 +57,6 @@ class TokenRefresh(MethodView):
 
 @blp.route('/logout')
 class UserLogout(MethodView):
-    # FIXME: http POST :5000/logout 'Authorization:Bearer [access_token]'
     @jwt_required()
     def post(self):
         jti = get_jwt()['jti']
@@ -70,13 +66,11 @@ class UserLogout(MethodView):
 
 @blp.route('/user/<int:user_id>')
 class User(MethodView):
-    # FIXME: http GET :5000/user/[user_id]
     @blp.response(200, UserSchema)
     def get(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         return user
 
-    # FIXME: http DELETE :5000/user/[user_id]
     def delete(self, user_id):
         user = UserModel.query.get_or_404(user_id)
         db.session.delete(user)
