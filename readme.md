@@ -13,7 +13,7 @@ Database migrations folder, can be deleted to re-initialize
 dev password, used for admin password in Dockerfile
 
 ### app.py
-Contain `JWT_SECRET_KEY`
+Contain `JWT_SECRET_KEY` and `SQLALCHEMY_DATABASE_URI`
 
 ### Dockerfile
 `EXPOSE 5000` is required for DEV, can be removed in PROD
@@ -30,31 +30,16 @@ docker buildx build $(cat .devpass.env | sed 's@^@--build-arg @g' | paste -s -d 
 ```
 
 ### Start Container
-DEV
-```
-docker container run -it --rm -v ./:/app -p 65000:5000 azymik/flask--udemy-course-rest-api-with-flask-and-python-in-2024--your-first-rest-api
-```
-
-PROD
-```
-docker container run -it --rm -v ./:/app -p 65000:80 azymik/flask--udemy-course-rest-api-with-flask-and-python-in-2024--your-first-rest-api
-```
+Use `flask run` for DEV, `gunicorn` for PROD
 
 ## Initializing/Migrating/Upgrading Database
 Migrate then Upgrade everytime that models change
 After migrate, check `migrations/versions` before upgrade
 ```
-flask db init
-flask db migrate
-flask db upgrade
+docker compose exec web /home/devuser/.venv/bin/flask db init
+docker compose exec web /home/devuser/.venv/bin/flask db migrate
+docker compose exec web /home/devuser/.venv/bin/flask db upgrade
 ```
-
-## Start App
-DEV
-> flask run --host=0.0.0.0
-
-PROD
-> gunicorn --bind 0.0.0.0:80 'app:create_app()'
 
 ## Endpoints
 Use `httpie` for testing
