@@ -1,43 +1,32 @@
-.vscode: VS Code Configuration Directory
-- settings.json: VS Code Configuration JSON File
+# Flask course 'REST APIs with Flask and Python in 2024'
 
-instance: DB Directory
-- data.db: DB File
+### .vscode folder
+Contain configuration file for vscode
 
-migrations: DB Migrations Info Directory
-- many files
+### instance folder
+Database folder, can be deleted to re-initialize
 
-models: Model Directory
-- item.py
-- store.py
+### migrations folder
+Database migrations folder, can be deleted to re-initialize
 
-resources: API Directory
-- item.py
-- store.py
+## Endpoints
+port = 5000 DEV `flask run --host=0.0.0.0` | 80 PROD `gunicorn --bind 0.0.0.0:80 'app:create_app()'`
 
-\
-.devpass.env: Password for docker 'devuser' account\
-\
-.flask.env: Environment for Flask\
-\
-.gitignore\
-\
-app.py: Starting Point for Flask\
-\
-blocklist.py: Contains blocklist of JWT tokens which added after user logged out\
-\
-db.py: Setting Up Database\
-\
-Dockerfile\
-\
-initialize_db.sh: Initialize database\
-\
-readme.md\
-\
-requirements.txt: Python required packages list\
-\
-run_flask.sh: Shell Script to run Flask\
-\
-schemas.py: Schema for API\
-\
-start_container.sh: Shell Script to Create Image, Run Container for Flask
+### item.py
+```
+http GET :[port]/item/[item_id] 'Authorization:Bearer [access_token]'
+http DELETE :[port]/item/[item_id] 'Authorization:Bearer [access_token]'
+http PUT :[port]/item/[item_id] name='[item_name]' price:=[item_price]
+
+http GET :[port]/item 'Authorization:Bearer [access_token]'
+http POST :[port]/item name='[item_name]' price:=[item_price] store_id:=[store_id] 'Authorization:Bearer [access_token]'
+```
+
+### store.py
+```
+http GET :[port]/store/[store_id]
+http DELETE :[port]/store/[store_id]
+
+http GET :[port]/store
+http POST :[port]/store name='[store_name]'
+```

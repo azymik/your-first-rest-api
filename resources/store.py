@@ -13,13 +13,11 @@ blp = Blueprint('stores', __name__, description='Operations on stores')
 
 @blp.route('/store/<int:store_id>')
 class Store(MethodView):
-    # FIXME: http GET :5000/store/[STORE_ID]
     @blp.response(200, StoreSchema)
     def get(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
         return store
 
-    # FIXME: http DELETE :5000/store/[store_id]
     def delete(self, store_id):
         store = StoreModel.query.get_or_404(store_id)
         db.session.delete(store)
@@ -29,12 +27,10 @@ class Store(MethodView):
 
 @blp.route('/store')
 class StoreList(MethodView):
-    # FIXME: http GET :5000/store
     @blp.response(200, StoreSchema(many=True))
     def get(self):
         return StoreModel.query.all()
 
-    # FIXME: http POST :5000/store name='My Store 2'
     @blp.arguments(StoreSchema)
     @blp.response(200, StoreSchema)
     def post(self, store_data):
