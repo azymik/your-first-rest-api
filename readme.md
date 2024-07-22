@@ -39,6 +39,7 @@ docker compose up -d
 Initially, do `init` and `migrate`
 
 Migrate then Upgrade everytime that models change
+
 After migrate, check `migrations/versions` before upgrade
 ```
 docker compose exec web /home/devuser/.venv/bin/flask db init
