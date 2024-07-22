@@ -1,3 +1,4 @@
+from flask import current_app
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from passlib.hash import pbkdf2_sha256
@@ -7,6 +8,7 @@ from db import db
 from blocklist import BLOCKLIST
 from models import UserModel
 from schemas import UserSchema
+from tasks import todo_task
 
 blp = Blueprint('Users', __name__, description='Operations on users')
 
@@ -24,6 +26,8 @@ class UserRegister(MethodView):
         )
         db.session.add(user)
         db.session.commit()
+
+        current_app.queue.enqueue(todo_task, f'{user} registered')
 
         return {'message': 'User created successfully.'}, 201
 

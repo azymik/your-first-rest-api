@@ -20,3 +20,5 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: myapp
+  redis_db:
+    image: redis:7.2.5

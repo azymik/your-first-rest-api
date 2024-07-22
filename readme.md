@@ -35,6 +35,11 @@ Use `flask run` for DEV, `gunicorn` for PROD (edit in `docker-entrypoint.sh`)
 docker compose up -d
 ```
 
+inside `web` container, run line below, in order to run `rq worker` to run subtasks in the background, -u for url, then follow by tasks name
+```
+rq worker -u redis://redis_db:6379 tasks
+```
+
 ## Initializing/Migrating/Upgrading Database
 After first deploy, do `init`, `migrate` and `upgrade`
 
