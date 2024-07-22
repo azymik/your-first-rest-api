@@ -30,7 +30,7 @@ docker buildx build $(cat .devpass.env | sed 's@^@--build-arg @g' | paste -s -d 
 ```
 
 ### Start Container
-Use `flask run` for DEV, `gunicorn` for PROD
+Use `flask run` for DEV, `gunicorn` for PROD (edit in `docker-entrypoint.sh`)
 ```
 docker compose up -d
 ```
