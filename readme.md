@@ -36,15 +36,20 @@ docker compose up -d
 ```
 
 ## Initializing/Migrating/Upgrading Database
-Initially, do `init` and `migrate`
+After first deploy, do `init`, `migrate` and `upgrade`
 
-Migrate then Upgrade everytime that models change
+Subsequently, Migrate then Upgrade everytime that models change
 
 After migrate, check `migrations/versions` before upgrade
 ```
 docker compose exec web /home/devuser/.venv/bin/flask db init
 docker compose exec web /home/devuser/.venv/bin/flask db migrate
 docker compose exec web /home/devuser/.venv/bin/flask db upgrade
+```
+
+To check database
+```
+docker compose exec -it db psql -U postgres -W myapp
 ```
 
 ## Endpoints
