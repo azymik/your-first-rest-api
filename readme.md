@@ -36,6 +36,8 @@ docker compose up -d
 ```
 
 ## Initializing/Migrating/Upgrading Database
+Initially, do `init` and `migrate`
+
 Migrate then Upgrade everytime that models change
 After migrate, check `migrations/versions` before upgrade
 ```
